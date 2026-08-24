@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koding dan Kecerdasan Artifisial — Kelas 10 | Rintisan MA Lembah Manah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --emerald-deep:#0B3D2E;
+    --emerald-mid:#155A44;
+    --gold:#C9A227;
+    --gold-soft:#E4C862;
+    --paper:#F7F3E8;
+    --sand:#EDE3C8;
+    --ink:#26241F;
+    --ink-soft:#5C5648;
+    --line:#D8CBA3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  /* Decorative lattice pattern used sparingly as the signature element */
+  .lattice{
+    background-image:
+      linear-gradient(30deg, transparent 48%, var(--gold) 48%, var(--gold) 52%, transparent 52%),
+      linear-gradient(-30deg, transparent 48%, var(--gold) 48%, var(--gold) 52%, transparent 52%);
+    background-size: 26px 26px;
+    opacity:0.35;
+  }
+
+  /* ===== Header / Masthead ===== */
+  header.masthead{
+    position:relative;
+    background:radial-gradient(120% 140% at 15% -10%, var(--emerald-mid) 0%, var(--emerald-deep) 55%, #072A1F 100%);
+    color:var(--paper);
+    padding:64px 24px 56px;
+    overflow:hidden;
+    text-align:center;
+  }
+  header.masthead::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(30deg, transparent 48%, rgba(201,162,39,0.5) 48%, rgba(201,162,39,0.5) 49%, transparent 49%),
+      linear-gradient(-30deg, transparent 48%, rgba(201,162,39,0.5) 48%, rgba(201,162,39,0.5) 49%, transparent 49%),
+      linear-gradient(90deg, transparent 48%, rgba(201,162,39,0.5) 48%, rgba(201,162,39,0.5) 49%, transparent 49%);
+    background-size: 46px 46px;
+    opacity:0.08;
+    pointer-events:none;
+  }
+  .masthead-inner{ position:relative; max-width:760px; margin:0 auto; }
+  .eyebrow{
+    display:inline-block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    border:1px solid rgba(228,200,98,0.45);
+    border-radius:999px;
+    padding:6px 16px;
+    margin-bottom:22px;
+  }
+  h1.org-name{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:clamp(28px, 4.2vw, 42px);
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
+  }
+  p.org-sub{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(16px, 2vw, 20px);
+    color:var(--gold-soft);
+    margin:0 0 28px;
+  }
+  .divider-motif{
+    width:120px;
+    height:14px;
+    margin:0 auto 28px;
+  }
+  .divider-motif svg{ width:100%; height:100%; display:block; }
+  h2.course-title{
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:clamp(20px, 2.6vw, 26px);
+    margin:0;
+    color:#fff;
+  }
+  p.course-level{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.08em;
+    color:rgba(247,243,232,0.75);
+    margin:10px 0 0;
+  }
+
+  /* ===== Breadcrumb / quick nav ===== */
+  nav.pathbar{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:12px 24px;
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    align-items:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+  }
+  nav.pathbar .repo-path{
+    color:var(--ink-soft);
+    margin-right:auto;
+  }
+  nav.pathbar .repo-path span{ color:var(--gold); }
+  nav.pathbar a{
+    color:var(--emerald-deep);
+    text-decoration:none;
+    padding:4px 2px;
+    border-bottom:1px solid transparent;
+  }
+  nav.pathbar a:hover, nav.pathbar a:focus-visible{
+    border-bottom-color:var(--gold);
+  }
+  nav.pathbar a:focus-visible{ outline:2px solid var(--emerald-mid); outline-offset:3px; border-radius:2px; }
+
+  /* ===== Main ===== */
+  main{
+    max-width:960px;
+    margin:0 auto;
+    padding:56px 24px 40px;
+  }
+  section.intro{
+    max-width:680px;
+    margin:0 auto 48px;
+    text-align:center;
+  }
+  section.intro h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:22px;
+    margin:0 0 10px;
+    color:var(--emerald-deep);
+  }
+  section.intro p{
+    color:var(--ink-soft);
+    font-size:15px;
+    margin:0;
+  }
+
+  .semester-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--emerald-mid);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:44px 0 20px;
+  }
+  .semester-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  /* ===== Chapter (folder) cards ===== */
+  .bab-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+    gap:20px;
+  }
+  .bab-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:0;
+    overflow:hidden;
+    transition:transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  .bab-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 14px 28px -18px rgba(11,61,46,0.35);
+    border-color:var(--gold);
+  }
+  .bab-card .tab{
+    background:var(--emerald-deep);
+    color:var(--gold-soft);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.05em;
+    padding:9px 18px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .bab-card .tab svg{ width:14px; height:14px; flex:none; }
+  .bab-card .tab-text{ opacity:0.9; }
+  .bab-card .body{ padding:20px 20px 18px; }
+  .bab-card h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:18px;
+    margin:0 0 4px;
+    color:var(--ink);
+  }
+  .bab-card a.card-link{
+    text-decoration:none;
+    color:inherit;
+  }
+  .bab-card .pages{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    margin:0 0 14px;
+  }
+  .sub-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    border-top:1px dashed var(--line);
+    padding-top:12px;
+  }
+  .sub-list li{ margin:0 0 7px; }
+  .sub-list li:last-child{ margin-bottom:0; }
+  .sub-list a{
+    display:flex;
+    gap:8px;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    text-decoration:none;
+    line-height:1.4;
+  }
+  .sub-list a .letter{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--gold);
+    font-weight:600;
+    flex:none;
+  }
+  .sub-list a:hover, .sub-list a:focus-visible{ color:var(--emerald-deep); }
+  .sub-list a:hover .letter, .sub-list a:focus-visible .letter{ text-decoration:underline; }
+  .sub-list .penilaian a{ font-style:italic; }
+
+  .bab-card a.card-link:focus-visible{
+    outline:2px solid var(--emerald-mid);
+    outline-offset:-2px;
+  }
+
+  /* Semester assessment - standalone strip, not a chapter */
+  .semester-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    background:var(--sand);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px 22px;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .semester-card:hover{ border-color:var(--gold); }
+  .semester-card .left{ display:flex; align-items:center; gap:14px; }
+  .semester-card .icon{
+    width:34px; height:34px; flex:none;
+    background:var(--gold);
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--emerald-deep);
+  }
+  .semester-card .icon svg{ width:18px; height:18px; }
+  .semester-card h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:16.5px;
+    margin:0;
+  }
+  .semester-card .pages{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+  }
+  .semester-card .goto{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--emerald-deep);
+  }
+  .semester-card:focus-visible{ outline:2px solid var(--emerald-mid); outline-offset:3px; border-radius:10px; }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:28px 24px 40px;
+    text-align:center;
+  }
+  footer p{
+    margin:0;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    letter-spacing:0.03em;
+  }
+  footer p.small{ margin-top:6px; opacity:0.75; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <span class="eyebrow">Buku Digital &middot; Kelas 10</span>
+    <h1 class="org-name">Yayasan Lembah Manah Langon Jepara</h1>
+    <p class="org-sub">Rintisan MA Lembah Manah</p>
+
+    <div class="divider-motif" aria-hidden="true">
+      <svg viewBox="0 0 120 14" preserveAspectRatio="xMidYMid meet">
+        <polyline points="0,7 20,7 27,1 34,13 41,1 48,13 55,1 62,13 69,7 100,7" fill="none" stroke="#E4C862" stroke-width="1.4"/>
+        <line x1="0" y1="7" x2="12" y2="7" stroke="#E4C862" stroke-width="1.4"/>
+        <line x1="108" y1="7" x2="120" y2="7" stroke="#E4C862" stroke-width="1.4"/>
+      </svg>
+    </div>
+
+    <h2 class="course-title">Mata Pelajaran Koding dan Kecerdasan Artifisial</h2>
+    <p class="course-level">Kelas 10 &nbsp;/&nbsp; Semester 1 &amp; 2</p>
+  </div>
+</header>
+
+<nav class="pathbar" aria-label="Navigasi cepat">
+  <span class="repo-path">~/<span>repo</span>/index.html</span>
+  <a href="#bab-1">Bab 1</a>
+  <a href="#bab-2">Bab 2</a>
+  <a href="#pas-1">PAS 1</a>
+  <a href="#bab-3">Bab 3</a>
+  <a href="#bab-4">Bab 4</a>
+</nav>
+
+<main>
+  <section class="intro">
+    <h3>Daftar Bab</h3>
+    <p>Setiap bab disimpan pada folder tersendiri. Pilih bab atau sub-materi di bawah untuk membuka halaman terkait.</p>
+  </section>
+
+  <div class="semester-label">Semester 1</div>
+
+  <div class="bab-grid">
+
+    <article class="bab-card" id="bab-1">
+      <a class="card-link" href="Bab-1/index.html">
+        <div class="tab">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>
+          <span class="tab-text">Bab-1/</span>
+        </div>
+        <div class="body">
+          <h4>Pemecahan Masalah dan Pemrograman</h4>
+          <p class="pages">hal. 1&ndash;58</p>
+        </div>
+      </a>
+      <div class="body" style="padding-top:0;">
+        <ul class="sub-list">
+          <li><a href="Bab-1/index.html#a-pemecahan-masalah-kompleks"><span class="letter">A.</span> Pemecahan Masalah Kompleks Sehari-hari</a></li>
+          <li><a href="Bab-1/index.html#b-perbandingan-algoritma"><span class="letter">B.</span> Perbandingan Algoritma</a></li>
+          <li><a href="Bab-1/index.html#c-pemrograman-berbasis-teks"><span class="letter">C.</span> Pemrograman Berbasis Teks</a></li>
+          <li><a href="Bab-1/index.html#d-melakukan-debugging"><span class="letter">D.</span> Melakukan Debugging</a></li>
+          <li class="penilaian"><a href="Bab-1/index.html#penilaian-bab">Penilaian Bab</a></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="bab-card" id="bab-2">
+      <a class="card-link" href="Bab-2/index.html">
+        <div class="tab">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>
+          <span class="tab-text">Bab-2/</span>
+        </div>
+        <div class="body">
+          <h4>Basis Data dan Pengelolaannya</h4>
+          <p class="pages">hal. 61&ndash;102</p>
+        </div>
+      </a>
+      <div class="body" style="padding-top:0;">
+        <ul class="sub-list">
+          <li><a href="Bab-2/index.html#a-konsep-basis-data"><span class="letter">A.</span> Konsep Basis Data</a></li>
+          <li><a href="Bab-2/index.html#b-perangkat-lunak-basis-data"><span class="letter">B.</span> Perangkat Lunak Basis Data</a></li>
+          <li class="penilaian"><a href="Bab-2/index.html#penilaian-bab">Penilaian Bab</a></li>
+        </ul>
+      </div>
+    </article>
+
+  </div>
+
+  <div style="margin-top:22px;">
+    <a class="semester-card" id="pas-1" href="Penilaian-Akhir-Semester-1/index.html">
+      <div class="left">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </span>
+        <div>
+          <h4>Penilaian Akhir Semester 1</h4>
+          <p class="pages">hal. 105</p>
+        </div>
+      </div>
+      <span class="goto">Penilaian-Akhir-Semester-1/ &rarr;</span>
+    </a>
+  </div>
+
+  <div class="semester-label">Semester 2</div>
+
+  <div class="bab-grid">
+
+    <article class="bab-card" id="bab-3">
+      <a class="card-link" href="Bab-3/index.html">
+        <div class="tab">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>
+          <span class="tab-text">Bab-3/</span>
+        </div>
+        <div class="body">
+          <h4>Multimedia Berbasis Kecerdasan Artifisial (KA)</h4>
+          <p class="pages">hal. 109&ndash;156</p>
+        </div>
+      </a>
+      <div class="body" style="padding-top:0;">
+        <ul class="sub-list">
+          <li><a href="Bab-3/index.html#a-konsep-multimedia"><span class="letter">A.</span> Konsep Multimedia</a></li>
+          <li><a href="Bab-3/index.html#b-produksi-konten-multimedia"><span class="letter">B.</span> Produksi Konten Multimedia</a></li>
+          <li><a href="Bab-3/index.html#c-diseminasi-konten-multimedia"><span class="letter">C.</span> Diseminasi Konten Multimedia</a></li>
+          <li><a href="Bab-3/index.html#d-evaluasi-konten-ka"><span class="letter">D.</span> Evaluasi Konten Berbasis Kecerdasan Artifisial</a></li>
+          <li class="penilaian"><a href="Bab-3/index.html#penilaian-bab">Penilaian Bab</a></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="bab-card" id="bab-4">
+      <a class="card-link" href="Bab-4/index.html">
+        <div class="tab">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>
+          <span class="tab-text">Bab-4/</span>
+        </div>
+        <div class="body">
+          <h4>Kecerdasan Artifisial (KA) dan Implementasinya</h4>
+          <p class="pages">hal. 159&ndash;204</p>
+        </div>
+      </a>
+      <div class="body" style="padding-top:0;">
+        <ul class="sub-list">
+          <li><a href="Bab-4/index.html#a-pengenalan-pola-citra-suara"><span class="letter">A.</span> Pengenalan Pola Citra dan Suara oleh Kecerdasan Artifisial</a></li>
+          <li><a href="Bab-4/index.html#b-profesi-dan-konsekuensi-ka"><span class="letter">B.</span> Profesi di Bidang KA dan Konsekuensi Pemanfaatan KA</a></li>
+          <li><a href="Bab-4/index.html#c-prompt-engineering"><span class="letter">C.</span> Prompt Engineering dan Perancangan Sistem KA</a></li>
+          <li class="penilaian"><a href="Bab-4/index.html#penilaian-bab">Penilaian Bab</a></li>
+        </ul>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer>
+  <p>Yayasan Lembah Manah Langon Jepara &middot; Rintisan MA Lembah Manah</p>
+  <p class="small">Koding dan Kecerdasan Artifisial &middot; Kelas 10</p>
+</footer>
+
+</body>
+</html>
