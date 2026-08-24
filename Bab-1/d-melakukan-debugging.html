@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D. Melakukan Debugging — Bab 1</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="crumbs" aria-label="Navigasi">
+  <a href="../index.html">Beranda</a>
+  <span class="sep">/</span>
+  <a href="index.html">Bab 1</a>
+  <span class="sep">/</span>
+  <span class="current">Bagian D</span>
+</nav>
+
+<header class="section-head">
+  <div class="section-head-inner">
+    <p class="section-eyebrow">Bab 1 &middot; Bagian D</p>
+    <h1 class="section-title">Melakukan Debugging</h1>
+  </div>
+</header>
+
+<main>
+
+  <div class="summary-box">
+    <p class="label">Ringkasan Bagian</p>
+    <p class="text">Bagian ini menjelaskan pengertian debugging beserta asal-usul istilah "bug", tiga jenis kesalahan program (syntax error, runtime error, logic error) lengkap dengan contohnya, serta lima strategi praktis untuk menemukan dan memperbaiki kesalahan — mulai dari membaca pesan error hingga rubber duck debugging. Ditutup dengan contoh kasus nyata memperbaiki logic error pada perhitungan rata-rata.</p>
+  </div>
+
+  <h2 class="sub">1. Apa Itu Debugging?</h2>
+  <p>Debugging adalah proses menemukan dan memperbaiki kesalahan (bug) dalam suatu program. Istilah "bug" (serangga) berasal dari kisah nyata pada tahun 1947, ketika seekor ngengat ditemukan tersangkut di dalam relai komputer Harvard Mark II sehingga menyebabkan program tidak berjalan dengan benar. Sejak saat itu, istilah bug melekat untuk menyebut kesalahan dalam program, dan debugging adalah keterampilan wajib bagi setiap programmer — bahkan programmer profesional menghabiskan sebagian besar waktunya untuk melakukan debugging, bukan hanya menulis kode baru.</p>
+
+  <h2 class="sub">2. Jenis-Jenis Kesalahan (Error)</h2>
+  <table>
+    <thead><tr><th>Jenis Error</th><th>Penyebab</th><th>Contoh</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Syntax Error<br><span style="color:var(--ink-soft); font-weight:400;">(Kesalahan Penulisan)</span></td>
+        <td>Penulisan kode tidak sesuai aturan tata bahasa pemrograman.</td>
+        <td><code>print("Halo"</code> → tanda kurung tutup tidak ditulis</td>
+      </tr>
+      <tr>
+        <td>Runtime Error<br><span style="color:var(--ink-soft); font-weight:400;">(Kesalahan Saat Dijalankan)</span></td>
+        <td>Kode benar secara tata bahasa, tetapi gagal saat dijalankan karena kondisi tertentu.</td>
+        <td><code>10 / 0</code> → pembagian dengan angka nol</td>
+      </tr>
+      <tr>
+        <td>Logic Error<br><span style="color:var(--ink-soft); font-weight:400;">(Kesalahan Logika)</span></td>
+        <td>Program berjalan lancar tanpa pesan error, tetapi hasilnya tidak sesuai harapan.</td>
+        <td>Rumus rata-rata tertulis <code>(a+b) * 2</code> padahal seharusnya <code>(a+b) / 2</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub">3. Strategi dan Teknik Debugging</h2>
+  <ol>
+    <li><strong>Membaca pesan error dengan teliti</strong> — Python biasanya menunjukkan baris dan jenis kesalahan secara spesifik pada pesan traceback.</li>
+    <li><strong>Menelusuri kode baris demi baris (tracing)</strong> — jalankan program secara manual di atas kertas atau menggunakan <code>print()</code> untuk memeriksa nilai variabel di setiap tahap.</li>
+    <li><strong>Menggunakan print() sebagai alat bantu</strong> — sisipkan perintah <code>print()</code> di titik-titik penting untuk melihat nilai variabel saat program berjalan.</li>
+    <li><strong>Membagi program menjadi bagian kecil (isolasi masalah)</strong> — uji setiap fungsi secara terpisah untuk menemukan bagian mana yang bermasalah.</li>
+    <li><strong>Meminta bantuan rekan (rubber duck debugging)</strong> — coba jelaskan kode milikmu baris demi baris kepada teman atau bahkan kepada benda mati; sering kali proses menjelaskan itu sendiri membantu menemukan kesalahan.</li>
+  </ol>
+
+  <h3 class="sub-sub">Contoh Kasus Debugging</h3>
+  <p>Perhatikan program berikut yang seharusnya menghitung rata-rata tiga nilai ulangan, namun menghasilkan output yang salah:</p>
+  <pre><code># Kode bermasalah
+nilai1 = 80
+nilai2 = 90
+nilai3 = 70
+rata_rata = nilai1 + nilai2 + nilai3 / 3
+print(f"Rata-rata: {rata_rata}")  # Output salah: 193.33</code></pre>
+
+  <p>Kesalahan di atas termasuk logic error, karena operator pembagian (/) hanya berlaku untuk <code>nilai3</code> akibat urutan operasi matematika (pembagian dan perkalian dikerjakan lebih dahulu daripada penjumlahan). Perbaikannya adalah dengan menambahkan tanda kurung agar penjumlahan dilakukan lebih dahulu:</p>
+
+  <pre><code># Kode setelah diperbaiki
+rata_rata = (nilai1 + nilai2 + nilai3) / 3
+print(f"Rata-rata: {rata_rata}")  # Output benar: 80.0</code></pre>
+
+  <div class="callout">
+    <h4>Mengapa Debugging Penting untuk AI?</h4>
+    <p>Dalam pengembangan sistem AI, kesalahan logika sekecil apa pun pada tahap pemrosesan data dapat menyebabkan model AI memberikan prediksi yang keliru dalam skala besar. Oleh karena itu, kebiasaan teliti dan sistematis dalam debugging yang dilatih sekarang akan menjadi keterampilan yang sangat berharga ketika kelak mengembangkan proyek berbasis AI.</p>
+  </div>
+
+  <div class="pager">
+    <a href="c-pemrograman-berbasis-teks.html">
+      <span class="dir">&larr; Sebelumnya</span>
+      C. Pemrograman Berbasis Teks
+    </a>
+    <a class="next" href="penilaian-bab.html">
+      <span class="dir">Selanjutnya &rarr;</span>
+      Penilaian Bab 1
+    </a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>Yayasan Lembah Manah Langon Jepara &middot; Rintisan MA Lembah Manah</p>
+  <p class="small">Bab 1 &middot; Koding dan Kecerdasan Artifisial &middot; Kelas 10</p>
+</footer>
+
+</body>
+</html>

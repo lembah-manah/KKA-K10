@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B. Perbandingan Algoritma — Bab 1</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="crumbs" aria-label="Navigasi">
+  <a href="../index.html">Beranda</a>
+  <span class="sep">/</span>
+  <a href="index.html">Bab 1</a>
+  <span class="sep">/</span>
+  <span class="current">Bagian B</span>
+</nav>
+
+<header class="section-head">
+  <div class="section-head-inner">
+    <p class="section-eyebrow">Bab 1 &middot; Bagian B</p>
+    <h1 class="section-title">Perbandingan Algoritma</h1>
+  </div>
+</header>
+
+<main>
+
+  <div class="summary-box">
+    <p class="label">Ringkasan Bagian</p>
+    <p class="text">Bagian ini membahas pengertian algoritma dan ciri-ciri algoritma yang baik, dua cara merepresentasikannya (pseudocode dan flowchart), serta cara membandingkan efisiensi dua algoritma melalui contoh pencarian linear versus pencarian biner. Ditutup dengan pengenalan konsep kompleksitas algoritma (notasi Big-O) yang relevan dalam pengolahan data berskala besar pada sistem AI.</p>
+  </div>
+
+  <h2 class="sub">1. Pengertian dan Ciri Algoritma yang Baik</h2>
+  <p>Algoritma adalah urutan langkah logis dan terbatas untuk menyelesaikan suatu masalah. Satu masalah dapat diselesaikan dengan lebih dari satu algoritma, namun tidak semua algoritma sama baiknya. Algoritma yang baik memiliki ciri-ciri berikut:</p>
+  <ul>
+    <li><strong>Jelas dan tidak ambigu (unambiguous)</strong> — setiap langkah memiliki satu makna pasti.</li>
+    <li>Memiliki <strong>input dan output</strong> yang terdefinisi dengan jelas.</li>
+    <li><strong>Berhingga (finite)</strong> — proses harus berhenti setelah sejumlah langkah tertentu, tidak berjalan selamanya.</li>
+    <li><strong>Efektif</strong> — setiap langkah dapat dikerjakan (oleh manusia maupun komputer) dalam waktu yang wajar.</li>
+    <li><strong>Efisien</strong> — menggunakan waktu dan sumber daya (memori) seminimal mungkin.</li>
+  </ul>
+
+  <h2 class="sub">2. Representasi Algoritma</h2>
+  <p>Sebelum dituliskan menjadi kode program, algoritma biasanya digambarkan terlebih dahulu dengan dua cara berikut agar mudah dipahami dan didiskusikan:</p>
+
+  <table>
+    <thead><tr><th>Bentuk</th><th>Ciri-ciri</th><th>Kapan Digunakan</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Pseudocode</td>
+        <td>Ditulis seperti bahasa manusia namun terstruktur; tidak terikat sintaks bahasa pemrograman tertentu.</td>
+        <td>Saat merancang logika program secara cepat sebelum menulis kode sesungguhnya.</td>
+      </tr>
+      <tr>
+        <td>Flowchart (Diagram Alir)</td>
+        <td>Menggunakan simbol-simbol standar (oval untuk mulai/selesai, persegi panjang untuk proses, belah ketupat untuk keputusan).</td>
+        <td>Saat ingin memvisualisasikan alur logika secara grafis, terutama untuk percabangan dan perulangan.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-sub">Contoh Pseudocode: Mencari Bilangan Terbesar</h3>
+  <pre><code>MULAI
+Deklarasikan variabel: a, b, c
+Masukkan nilai a, b, c
+JIKA a &gt; b DAN a &gt; c MAKA
+    terbesar = a
+LAINNYA JIKA b &gt; c MAKA
+    terbesar = b
+LAINNYA
+    terbesar = c
+Tampilkan terbesar
+SELESAI</code></pre>
+
+  <h2 class="sub">3. Membandingkan Efisiensi Algoritma</h2>
+  <p>Ketika ada lebih dari satu algoritma untuk masalah yang sama, kita perlu membandingkan efisiensinya, terutama dari dua aspek: waktu eksekusi (berapa banyak langkah/operasi yang dibutuhkan) dan penggunaan memori. Sebagai ilustrasi, perhatikan dua algoritma untuk mencari sebuah angka dalam daftar:</p>
+
+  <h3 class="sub-sub">Algoritma 1: Pencarian Berurutan (Sequential/Linear Search)</h3>
+  <p>Memeriksa data satu per satu dari awal hingga ditemukan atau sampai data habis.</p>
+  <pre><code>def pencarian_linear(data, target):
+    for i in range(len(data)):
+        if data[i] == target:
+            return i  # posisi ditemukan
+    return -1  # tidak ditemukan</code></pre>
+
+  <h3 class="sub-sub">Algoritma 2: Pencarian Biner (Binary Search)</h3>
+  <p>Hanya dapat digunakan jika data sudah terurut. Bekerja dengan membagi dua area pencarian secara berulang, sehingga jauh lebih cepat untuk data yang besar.</p>
+  <pre><code>def pencarian_biner(data, target):
+    kiri, kanan = 0, len(data) - 1
+    while kiri &lt;= kanan:
+        tengah = (kiri + kanan) // 2
+        if data[tengah] == target:
+            return tengah
+        elif data[tengah] &lt; target:
+            kiri = tengah + 1
+        else:
+            kanan = tengah - 1
+    return -1</code></pre>
+
+  <p>Untuk mencari satu angka di antara 1.000 data yang sudah terurut, pencarian linear dalam kasus terburuk membutuhkan hingga 1.000 kali pemeriksaan, sedangkan pencarian biner hanya membutuhkan sekitar 10 kali pemeriksaan saja (2¹⁰ = 1024). Inilah sebabnya pencarian biner disebut jauh lebih efisien untuk data besar, meskipun syaratnya data harus sudah terurut lebih dahulu.</p>
+
+  <table>
+    <thead><tr><th>Aspek</th><th>Pencarian Linear</th><th>Pencarian Biner</th></tr></thead>
+    <tbody>
+      <tr><td>Syarat data</td><td>Tidak harus terurut</td><td>Harus sudah terurut</td></tr>
+      <tr><td>Kecepatan pada data besar</td><td>Lambat</td><td>Cepat</td></tr>
+      <tr><td>Kompleksitas (gambaran kasar)</td><td>Sebanding jumlah data (n)</td><td>Sebanding log dari jumlah data (log n)</td></tr>
+      <tr><td>Kemudahan implementasi</td><td>Sangat mudah</td><td>Sedikit lebih rumit</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box info">
+    <h4>Istilah Penting: Kompleksitas Algoritma</h4>
+    <p>Notasi Big-O (misalnya O(n) atau O(log n)) adalah cara para ilmuwan komputer menggambarkan seberapa cepat pertumbuhan waktu proses suatu algoritma seiring bertambahnya jumlah data. Semakin kecil pertumbuhannya, semakin efisien algoritma tersebut untuk data berskala besar — hal ini sangat penting dalam sistem AI yang sering mengolah jutaan data sekaligus.</p>
+  </div>
+
+  <div class="pager">
+    <a href="a-pemecahan-masalah-kompleks.html">
+      <span class="dir">&larr; Sebelumnya</span>
+      A. Pemecahan Masalah Kompleks
+    </a>
+    <a class="next" href="c-pemrograman-berbasis-teks.html">
+      <span class="dir">Selanjutnya &rarr;</span>
+      C. Pemrograman Berbasis Teks
+    </a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>Yayasan Lembah Manah Langon Jepara &middot; Rintisan MA Lembah Manah</p>
+  <p class="small">Bab 1 &middot; Koding dan Kecerdasan Artifisial &middot; Kelas 10</p>
+</footer>
+
+</body>
+</html>

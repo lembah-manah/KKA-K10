@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C. Pemrograman Berbasis Teks — Bab 1</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="crumbs" aria-label="Navigasi">
+  <a href="../index.html">Beranda</a>
+  <span class="sep">/</span>
+  <a href="index.html">Bab 1</a>
+  <span class="sep">/</span>
+  <span class="current">Bagian C</span>
+</nav>
+
+<header class="section-head">
+  <div class="section-head-inner">
+    <p class="section-eyebrow">Bab 1 &middot; Bagian C</p>
+    <h1 class="section-title">Pemrograman Berbasis Teks</h1>
+  </div>
+</header>
+
+<main>
+
+  <div class="summary-box">
+    <p class="label">Ringkasan Bagian</p>
+    <p class="text">Bagian ini memperkenalkan Python sebagai bahasa pemrograman dasar menuju AI, mencakup variabel dan empat tipe data dasar (int, float, str, bool), struktur kontrol berupa percabangan (if/elif/else) dan perulangan (for/while), serta fungsi sebagai blok kode yang dapat dipakai ulang. Bagian ditutup dengan contoh chatbot sederhana berbasis aturan sebagai jembatan menuju konsep AI di Bab 3 dan Bab 4.</p>
+  </div>
+
+  <h2 class="sub">1. Mengenal Bahasa Pemrograman Python</h2>
+  <p>Python dipilih sebagai bahasa pengantar dalam pembelajaran KKA karena sintaksnya sederhana dan mendekati bahasa manusia sehingga cocok untuk pemula, sekaligus merupakan bahasa yang paling banyak digunakan dalam pengembangan Kecerdasan Artifisial dan Machine Learning saat ini (misalnya untuk membangun chatbot, pengenalan gambar, dan model prediksi). Dengan menguasai dasar Python, peserta didik memiliki modal awal untuk mempelajari AI lebih lanjut di jenjang berikutnya.</p>
+
+  <h2 class="sub">2. Variabel dan Tipe Data</h2>
+  <p>Variabel adalah tempat menyimpan data dalam program. Python mengenal beberapa tipe data dasar berikut:</p>
+
+  <table>
+    <thead><tr><th>Tipe Data</th><th>Contoh Nilai</th><th>Kegunaan</th></tr></thead>
+    <tbody>
+      <tr><td>int (bilangan bulat)</td><td>17, -5, 2026</td><td>Menyimpan jumlah, usia, nilai ulangan</td></tr>
+      <tr><td>float (bilangan desimal)</td><td>3.14, 75.5</td><td>Menyimpan nilai rata-rata, suhu, harga</td></tr>
+      <tr><td>str (teks/string)</td><td>"Ahmad", "Kelas X"</td><td>Menyimpan nama, kalimat</td></tr>
+      <tr><td>bool (boolean)</td><td>True, False</td><td>Menyimpan hasil logika benar/salah</td></tr>
+    </tbody>
+  </table>
+
+  <pre><code>nama = "Aisyah"        # str
+usia = 16               # int
+tinggi_badan = 158.5    # float
+lulus = True             # bool
+
+print(f"{nama} berusia {usia} tahun")</code></pre>
+
+  <h2 class="sub">3. Struktur Kontrol</h2>
+
+  <h3 class="sub-sub">a. Percabangan (Conditional)</h3>
+  <p>Digunakan untuk menjalankan blok kode yang berbeda tergantung pada suatu kondisi, menggunakan <code>if</code>, <code>elif</code>, dan <code>else</code>.</p>
+  <pre><code>nilai = 85
+if nilai &gt;= 90:
+    print("Predikat: Sangat Baik")
+elif nilai &gt;= 75:
+    print("Predikat: Baik")
+else:
+    print("Predikat: Perlu Bimbingan")</code></pre>
+
+  <h3 class="sub-sub">b. Perulangan (Loop)</h3>
+  <p>Digunakan untuk mengulang suatu blok kode tanpa harus menuliskannya berkali-kali, menggunakan <code>for</code> atau <code>while</code>.</p>
+  <pre><code># Perulangan for: menampilkan nilai ganjil 1-10
+for angka in range(1, 11):
+    if angka % 2 != 0:
+        print(angka)
+
+# Perulangan while: menghitung mundur
+hitung = 5
+while hitung &gt; 0:
+    print(hitung)
+    hitung -= 1
+print("Mulai!")</code></pre>
+
+  <h2 class="sub">4. Fungsi (Function)</h2>
+  <p>Fungsi adalah blok kode yang diberi nama dan dapat dipanggil berulang kali untuk melakukan tugas tertentu, sehingga kode menjadi lebih rapi dan tidak berulang (istilah kerennya: <em>reusable</em>). Fungsi juga menjadi konsep dasar sebelum peserta didik nantinya memanggil fungsi-fungsi pustaka (library) AI seperti model klasifikasi gambar.</p>
+  <pre><code>def hitung_luas_persegi_panjang(panjang, lebar):
+    luas = panjang * lebar
+    return luas
+
+hasil = hitung_luas_persegi_panjang(8, 5)
+print(f"Luas persegi panjang: {hasil}")</code></pre>
+
+  <h2 class="sub">5. Koneksi dengan AI: Chatbot Sederhana</h2>
+  <p>Struktur kontrol dan fungsi yang baru saja dipelajari sesungguhnya adalah dasar dari cara kerja chatbot berbasis aturan (rule-based chatbot) — nenek moyang dari chatbot AI modern seperti asisten virtual. Perhatikan contoh sederhana berikut:</p>
+  <pre><code>def chatbot(pesan):
+    pesan = pesan.lower()
+    if "halo" in pesan:
+        return "Halo juga! Ada yang bisa saya bantu?"
+    elif "jadwal" in pesan:
+        return "Jadwal pelajaran hari ini bisa dilihat di papan info."
+    else:
+        return "Maaf, saya belum memahami pertanyaan itu."
+
+print(chatbot("Halo, apa kabar?"))</code></pre>
+
+  <p>Chatbot AI yang sesungguhnya (seperti asisten virtual) menggunakan model bahasa yang jauh lebih kompleks dan dilatih dari jutaan data, namun logika dasarnya tetap sama: menerima input, memprosesnya melalui serangkaian aturan/perhitungan, lalu menghasilkan output. Memahami dasar ini akan sangat membantu ketika mempelajari AI lebih lanjut di Bab 3 dan Bab 4.</p>
+
+  <div class="box activity">
+    <h4>Aktivitas Praktik</h4>
+    <p>Buka aplikasi Python (misalnya melalui situs replit.com atau aplikasi Thonny) dan cobalah memodifikasi program chatbot sederhana di atas dengan menambahkan minimal 3 kata kunci dan balasan baru sesuai kreativitasmu.</p>
+  </div>
+
+  <div class="pager">
+    <a href="b-perbandingan-algoritma.html">
+      <span class="dir">&larr; Sebelumnya</span>
+      B. Perbandingan Algoritma
+    </a>
+    <a class="next" href="d-melakukan-debugging.html">
+      <span class="dir">Selanjutnya &rarr;</span>
+      D. Melakukan Debugging
+    </a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>Yayasan Lembah Manah Langon Jepara &middot; Rintisan MA Lembah Manah</p>
+  <p class="small">Bab 1 &middot; Koding dan Kecerdasan Artifisial &middot; Kelas 10</p>
+</footer>
+
+</body>
+</html>

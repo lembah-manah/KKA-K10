@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A. Pemecahan Masalah Kompleks Sehari-hari — Bab 1</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="crumbs" aria-label="Navigasi">
+  <a href="../index.html">Beranda</a>
+  <span class="sep">/</span>
+  <a href="index.html">Bab 1</a>
+  <span class="sep">/</span>
+  <span class="current">Bagian A</span>
+</nav>
+
+<header class="section-head">
+  <div class="section-head-inner">
+    <p class="section-eyebrow">Bab 1 &middot; Bagian A</p>
+    <h1 class="section-title">Pemecahan Masalah Kompleks Sehari-hari</h1>
+  </div>
+</header>
+
+<main>
+
+  <div class="summary-box">
+    <p class="label">Ringkasan Bagian</p>
+    <p class="text">Bagian ini mengenalkan konsep masalah kompleks dan berpikir komputasional (computational thinking) sebagai cara programmer memecah persoalan sebelum menuliskannya menjadi kode. Empat pilar berpikir komputasional — dekomposisi, pengenalan pola, abstraksi, dan penyusunan algoritma — dijelaskan lewat contoh sehari-hari, dilengkapi tahapan sistematis memecahkan masalah (Understand, Plan, Do, Review) dan studi kasus menyusun jadwal piket kelas.</p>
+  </div>
+
+  <h2 class="sub">1. Apa Itu Masalah Kompleks?</h2>
+  <p>Masalah kompleks adalah masalah yang tidak dapat diselesaikan hanya dengan satu langkah sederhana. Masalah semacam ini biasanya memiliki banyak variabel, keterkaitan antarbagian, dan beberapa kemungkinan solusi. Contohnya: mengatur jadwal ekstrakurikuler agar tidak bentrok dengan jadwal pelajaran dan ibadah, merancang rute perjalanan study tour paling efisien, atau menyusun anggaran kegiatan OSIS. Dalam dunia komputer, program-program AI seperti mesin pencari, GPS, atau asisten suara juga lahir dari upaya memecah masalah kompleks menjadi langkah-langkah yang bisa dijalankan komputer.</p>
+
+  <h2 class="sub">2. Berpikir Komputasional (Computational Thinking)</h2>
+  <p>Berpikir komputasional adalah cara berpikir yang digunakan programmer dan ilmuwan komputer untuk memecahkan masalah sebelum menuliskannya menjadi kode. Terdapat empat pilar utama:</p>
+
+  <table>
+    <caption>Empat Pilar Berpikir Komputasional</caption>
+    <thead>
+      <tr><th>Pilar</th><th>Penjelasan</th><th>Contoh Sehari-hari</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dekomposisi (Decomposition)</td>
+        <td>Memecah masalah besar menjadi bagian-bagian kecil yang lebih mudah ditangani.</td>
+        <td>Merencanakan pesta ulang tahun dipecah menjadi: undangan, dekorasi, makanan, dan acara.</td>
+      </tr>
+      <tr>
+        <td>Pengenalan Pola (Pattern Recognition)</td>
+        <td>Menemukan kesamaan atau pola dari beberapa masalah/data untuk mempercepat solusi.</td>
+        <td>Menyadari bahwa soal matematika tertentu selalu diselesaikan dengan rumus yang sama.</td>
+      </tr>
+      <tr>
+        <td>Abstraksi (Abstraction)</td>
+        <td>Mengabaikan detail yang tidak penting dan fokus pada informasi yang relevan.</td>
+        <td>Peta jalur MRT hanya menampilkan stasiun dan garis, bukan bentuk asli jalan.</td>
+      </tr>
+      <tr>
+        <td>Algoritma (Algorithm Design)</td>
+        <td>Menyusun langkah-langkah runtut dan logis untuk menyelesaikan masalah.</td>
+        <td>Langkah-langkah membuat mi instan yang tertulis pada kemasan.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub">3. Tahapan Sistematis Memecahkan Masalah</h2>
+  <ol>
+    <li><strong>Memahami masalah (Understand):</strong> baca dan pahami apa yang diminta, apa data yang diketahui, dan apa hasil yang diharapkan.</li>
+    <li><strong>Merencanakan solusi (Plan):</strong> pilih strategi/algoritma yang mungkin digunakan; bisa dituangkan dalam bentuk diagram alir (flowchart) atau pseudocode.</li>
+    <li><strong>Melaksanakan rencana (Do/Implement):</strong> terapkan rencana tersebut, misalnya menuliskannya dalam kode program.</li>
+    <li><strong>Meninjau kembali (Review):</strong> periksa apakah solusi sudah benar, efisien, dan dapat digunakan untuk kasus lain yang serupa.</li>
+  </ol>
+
+  <h2 class="sub">4. Studi Kasus: Menyusun Jadwal Piket Kelas</h2>
+  <p>Perhatikan contoh penerapan berpikir komputasional berikut untuk masalah menyusun jadwal piket kelas yang adil bagi 30 siswa selama satu semester (± 90 hari sekolah):</p>
+  <ul>
+    <li><strong>Dekomposisi:</strong> pisahkan masalah menjadi — mendata siswa, menentukan jumlah hari, menentukan aturan (misal tiap siswa piket 2 kali), dan menyusun urutan.</li>
+    <li><strong>Pengenalan pola:</strong> sadari bahwa ini adalah masalah pembagian rata (distribusi) yang mirip dengan pembagian tugas kelompok.</li>
+    <li><strong>Abstraksi:</strong> cukup gunakan nomor absen dan tanggal, tanpa perlu memikirkan hal lain seperti warna seragam.</li>
+    <li><strong>Algoritma:</strong> urutkan siswa berdasarkan nomor absen, lalu tetapkan berpasangan/berkelompok secara berurutan untuk setiap hari sekolah, ulangi siklus jika hari sekolah lebih banyak dari jumlah siswa.</li>
+  </ul>
+
+  <div class="box activity">
+    <h4>Aktivitas Mandiri</h4>
+    <p>Pilih satu masalah nyata di sekolah atau rumahmu (misalnya mengatur waktu belajar, mengelola uang jajan mingguan, atau memilih rute tercepat ke sekolah). Uraikan penyelesaiannya menggunakan empat pilar berpikir komputasional pada tabel di atas, lalu diskusikan dengan teman sebangku.</p>
+  </div>
+
+  <div class="pager">
+    <a href="index.html">
+      <span class="dir">&larr; Kembali</span>
+      Daftar Materi Bab 1
+    </a>
+    <a class="next" href="b-perbandingan-algoritma.html">
+      <span class="dir">Selanjutnya &rarr;</span>
+      B. Perbandingan Algoritma
+    </a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>Yayasan Lembah Manah Langon Jepara &middot; Rintisan MA Lembah Manah</p>
+  <p class="small">Bab 1 &middot; Koding dan Kecerdasan Artifisial &middot; Kelas 10</p>
+</footer>
+
+</body>
+</html>
