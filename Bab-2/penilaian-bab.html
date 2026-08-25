@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penilaian Bab 2 — Basis Data dan Pengelolaannya</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="crumbs" aria-label="Navigasi">
+  <a href="../index.html">Beranda</a>
+  <span class="sep">/</span>
+  <a href="index.html">Bab 2</a>
+  <span class="sep">/</span>
+  <span class="current">Penilaian Bab</span>
+</nav>
+
+<header class="section-head">
+  <div class="section-head-inner">
+    <p class="section-eyebrow">Bab 2 &middot; Penilaian</p>
+    <h1 class="section-title">Penilaian Bab 2</h1>
+  </div>
+</header>
+
+<main>
+
+  <div class="summary-box">
+    <p class="label">Ringkasan Bagian</p>
+    <p class="text">Halaman ini berisi soal evaluasi Bab 2 dalam tiga bentuk: 5 soal pilihan ganda seputar istilah dan perintah dasar basis data, 4 soal esai/uraian yang menguji perancangan ERD dan penulisan SQL, serta satu proyek mini berpasangan untuk mempraktikkan perancangan ERD, pembuatan tabel, pengisian data, dan query SELECT dengan kondisi.</p>
+  </div>
+
+  <h2 class="sub">A. Pilihan Ganda</h2>
+  <p>Pilihlah satu jawaban yang paling tepat!</p>
+  <ol class="q-list mc">
+    <li class="q-item">
+      <p class="q-text">1. Kolom pada suatu tabel yang nilainya bersifat unik dan digunakan sebagai identitas setiap baris data disebut ....</p>
+      <ul class="q-options">
+        <li><span>a.</span>Foreign key</li>
+        <li><span>b.</span>Primary key</li>
+        <li><span>c.</span>Field</li>
+        <li><span>d.</span>Record</li>
+        <li><span>e.</span>Relasi</li>
+      </ul>
+    </li>
+    <li class="q-item">
+      <p class="q-text">2. Perintah SQL yang digunakan untuk mengambil/menampilkan data dari suatu tabel adalah ....</p>
+      <ul class="q-options">
+        <li><span>a.</span>INSERT</li>
+        <li><span>b.</span>UPDATE</li>
+        <li><span>c.</span>DELETE</li>
+        <li><span>d.</span>SELECT</li>
+        <li><span>e.</span>CREATE</li>
+      </ul>
+    </li>
+    <li class="q-item">
+      <p class="q-text">3. Diagram yang digunakan untuk merancang entitas, atribut, dan relasi sebelum basis data dibuat disebut ....</p>
+      <ul class="q-options">
+        <li><span>a.</span>Flowchart</li>
+        <li><span>b.</span>ERD</li>
+        <li><span>c.</span>Pseudocode</li>
+        <li><span>d.</span>Query</li>
+        <li><span>e.</span>Skema JSON</li>
+      </ul>
+    </li>
+    <li class="q-item">
+      <p class="q-text">4. Berikut ini yang merupakan DBMS ringan dan tidak memerlukan server terpisah adalah ....</p>
+      <ul class="q-options">
+        <li><span>a.</span>MySQL</li>
+        <li><span>b.</span>PostgreSQL</li>
+        <li><span>c.</span>SQLite</li>
+        <li><span>d.</span>Oracle</li>
+        <li><span>e.</span>SQL Server</li>
+      </ul>
+    </li>
+    <li class="q-item">
+      <p class="q-text">5. Dalam konteks pengembangan Kecerdasan Artifisial, data yang buruk dan tidak rapi akan menghasilkan ....</p>
+      <ul class="q-options">
+        <li><span>a.</span>Model AI yang selalu akurat</li>
+        <li><span>b.</span>Hasil prediksi yang tetap baik</li>
+        <li><span>c.</span>Model AI dengan hasil yang buruk (garbage in, garbage out)</li>
+        <li><span>d.</span>Basis data otomatis rapi</li>
+        <li><span>e.</span>Tidak berpengaruh sama sekali</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2 class="sub">B. Esai / Uraian</h2>
+  <ol>
+    <li>Jelaskan tiga masalah yang dapat timbul apabila data dikelola secara manual (tanpa basis data), beserta bagaimana basis data mengatasi masalah tersebut.</li>
+    <li>Rancanglah sebuah ERD sederhana untuk sistem peminjaman alat olahraga di sekolah, lengkap dengan minimal dua entitas dan atributnya.</li>
+    <li>Tuliskan perintah SQL untuk membuat tabel bernama "buku" dengan kolom kode_buku (primary key), judul, dan stok, kemudian tuliskan perintah untuk menambahkan satu data buku ke dalam tabel tersebut.</li>
+    <li>Jelaskan keterkaitan antara pengelolaan basis data dengan proses pelatihan model Kecerdasan Artifisial, disertai contoh nyata.</li>
+  </ol>
+
+  <h2 class="sub">C. Proyek Mini</h2>
+  <p>Kerjakan secara berpasangan. Pilih salah satu tema berikut, lalu rancang ERD sederhana, buat tabelnya menggunakan SQL (boleh melalui SQLite Browser atau kode Python dengan sqlite3), isi dengan minimal 5 data, dan tampilkan hasil query SELECT dengan minimal satu kondisi (WHERE):</p>
+  <ul>
+    <li>Basis data perpustakaan sekolah (buku dan status peminjaman).</li>
+    <li>Basis data inventaris alat laboratorium/olahraga sekolah.</li>
+    <li>Basis data pendataan kegiatan ekstrakurikuler siswa.</li>
+  </ul>
+
+  <div class="box info">
+    <h4>Rubrik Penilaian Proyek</h4>
+    <p>Ketepatan rancangan ERD (25%), kebenaran struktur tabel dan tipe data (25%), keberhasilan menjalankan perintah SQL CRUD (25%), serta kejelasan presentasi hasil kepada kelas (25%).</p>
+  </div>
+
+  <div class="pager">
+    <a href="b-perangkat-lunak-basis-data.html">
+      <span class="dir">&larr; Sebelumnya</span>
+      B. Perangkat Lunak Basis Data
+    </a>
+    <a class="next" href="index.html">
+      <span class="dir">Selesai &rarr;</span>
+      Kembali ke Daftar Materi Bab 2
+    </a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>Yayasan Lembah Manah Langon Jepara &middot; Rintisan MA Lembah Manah</p>
+  <p class="small"><a href="../index.html" style="color:inherit;">&larr; Kembali ke Beranda</a></p>
+</footer>
+
+</body>
+</html>

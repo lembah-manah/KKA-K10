@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A. Konsep Basis Data — Bab 2</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="crumbs" aria-label="Navigasi">
+  <a href="../index.html">Beranda</a>
+  <span class="sep">/</span>
+  <a href="index.html">Bab 2</a>
+  <span class="sep">/</span>
+  <span class="current">Bagian A</span>
+</nav>
+
+<header class="section-head">
+  <div class="section-head-inner">
+    <p class="section-eyebrow">Bab 2 &middot; Bagian A</p>
+    <h1 class="section-title">Konsep Basis Data</h1>
+  </div>
+</header>
+
+<main>
+
+  <div class="summary-box">
+    <p class="label">Ringkasan Bagian</p>
+    <p class="text">Bagian ini menjelaskan pengertian data, informasi, dan basis data, serta alasan mengapa basis data diperlukan dibanding penyimpanan manual. Dibahas pula komponen sistem basis data, istilah-istilah dalam model data relasional (tabel, field, record, primary key, foreign key), cara merancang skema menggunakan ERD, pengantar normalisasi data, dan peran basis data sebagai fondasi pengembangan sistem Kecerdasan Artifisial.</p>
+  </div>
+
+  <h2 class="sub">1. Pengertian Data, Informasi, dan Basis Data</h2>
+  <p>Data adalah fakta mentah yang belum memiliki makna, misalnya angka 85, kata "Ahmad", atau tanggal 17-08-2026. Ketika data diolah dan diberi konteks sehingga bermakna dan berguna bagi penggunanya, data tersebut berubah menjadi informasi, misalnya "Ahmad memperoleh nilai 85 pada ulangan Matematika tanggal 17 Agustus 2026". Basis data (database) adalah kumpulan data yang terorganisasi secara sistematis sehingga dapat disimpan, diakses, diubah, dan dikelola dengan mudah menggunakan perangkat lunak tertentu.</p>
+
+  <h2 class="sub">2. Mengapa Diperlukan Basis Data?</h2>
+  <p>Sebelum ada basis data, data biasanya disimpan dalam berkas terpisah (seperti catatan kertas atau file Excel yang tersebar). Cara ini menimbulkan berbagai masalah ketika data semakin banyak dan digunakan oleh banyak orang sekaligus:</p>
+
+  <table>
+    <thead><tr><th>Masalah pada Penyimpanan Manual</th><th>Solusi yang Ditawarkan Basis Data</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Data ganda (redundansi) — data yang sama dicatat berkali-kali di tempat berbeda.</td>
+        <td>Data disimpan satu kali dan dapat diakses/dihubungkan dari berbagai tempat (menghindari duplikasi).</td>
+      </tr>
+      <tr>
+        <td>Data tidak konsisten — perubahan di satu file tidak otomatis memperbarui file lain.</td>
+        <td>Perubahan data cukup dilakukan sekali dan langsung berlaku untuk seluruh sistem yang terhubung.</td>
+      </tr>
+      <tr>
+        <td>Sulit diakses bersama — banyak pengguna tidak bisa mengedit file yang sama secara real-time dengan aman.</td>
+        <td>Mendukung banyak pengguna mengakses data secara bersamaan dengan kontrol hak akses.</td>
+      </tr>
+      <tr>
+        <td>Rawan hilang atau rusak tanpa cadangan yang baik.</td>
+        <td>Tersedia mekanisme backup, keamanan, dan pemulihan data.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub">3. Komponen Sistem Basis Data</h2>
+  <p>Sebuah Sistem Basis Data (Database System) terdiri atas beberapa komponen yang saling bekerja sama:</p>
+  <ul>
+    <li><strong>Data</strong> — kumpulan fakta yang disimpan, misalnya data siswa, data nilai, atau data buku perpustakaan.</li>
+    <li><strong>DBMS (Database Management System)</strong> — perangkat lunak yang digunakan untuk membuat, mengelola, dan mengakses basis data, misalnya MySQL, SQLite, atau PostgreSQL.</li>
+    <li><strong>Perangkat keras (Hardware)</strong> — komputer, server, atau media penyimpanan tempat basis data berada.</li>
+    <li><strong>Pengguna (User)</strong> — pihak yang berinteraksi dengan basis data, misalnya administrator basis data (DBA), programmer aplikasi, atau pengguna akhir (end user).</li>
+    <li><strong>Prosedur</strong> — aturan dan panduan mengenai cara merancang dan menggunakan basis data.</li>
+  </ul>
+
+  <h2 class="sub">4. Model Data Relasional</h2>
+  <p>Model data yang paling umum digunakan saat ini adalah model relasional, yaitu data disusun dalam bentuk tabel-tabel yang saling berhubungan (relasi). Berikut istilah-istilah penting dalam model relasional:</p>
+
+  <table>
+    <thead><tr><th>Istilah</th><th>Penjelasan</th><th>Analogi</th></tr></thead>
+    <tbody>
+      <tr><td>Tabel (Table)</td><td>Kumpulan data yang membahas satu topik tertentu, tersusun dalam baris dan kolom.</td><td>Seperti sebuah buku daftar hadir.</td></tr>
+      <tr><td>Field / Kolom (Column)</td><td>Kategori data yang disimpan, misalnya nama, usia, kelas.</td><td>Judul kolom pada buku daftar hadir.</td></tr>
+      <tr><td>Record / Baris (Row)</td><td>Satu kumpulan data lengkap tentang satu objek/individu.</td><td>Satu baris data milik satu siswa.</td></tr>
+      <tr><td>Primary Key</td><td>Kolom unik yang membedakan satu record dengan record lainnya, tidak boleh sama/kosong.</td><td>Nomor Induk Siswa (NIS), karena setiap siswa memiliki NIS berbeda.</td></tr>
+      <tr><td>Foreign Key</td><td>Kolom pada suatu tabel yang mengacu pada primary key di tabel lain, digunakan untuk menghubungkan antartabel.</td><td>Kolom "kode_kelas" pada tabel Siswa yang mengacu ke tabel Kelas.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-sub">Contoh Tabel: Data Siswa</h3>
+  <table>
+    <thead><tr><th>NIS (Primary Key)</th><th>Nama</th><th>Kelas</th><th>Nilai KKA</th></tr></thead>
+    <tbody>
+      <tr><td>2026001</td><td>Ahmad Fauzan</td><td>X-1</td><td>88</td></tr>
+      <tr><td>2026002</td><td>Siti Aisyah</td><td>X-1</td><td>92</td></tr>
+      <tr><td>2026003</td><td>Budi Santoso</td><td>X-2</td><td>79</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub">5. Merancang Basis Data dengan ERD</h2>
+  <p>Entity Relationship Diagram (ERD) adalah diagram yang digunakan untuk merancang struktur basis data sebelum dibuat, dengan menggambarkan entitas (objek data), atribut (karakteristik entitas), dan relasi (hubungan antarentitas).</p>
+
+  <table>
+    <thead><tr><th>Komponen ERD</th><th>Simbol Umum</th><th>Contoh</th></tr></thead>
+    <tbody>
+      <tr><td>Entitas (Entity)</td><td>Persegi panjang</td><td>Siswa, Buku, Guru</td></tr>
+      <tr><td>Atribut (Attribute)</td><td>Oval / elips</td><td>nama, tanggal_lahir, alamat</td></tr>
+      <tr><td>Relasi (Relationship)</td><td>Belah ketupat / garis penghubung</td><td>"Siswa" meminjam "Buku"</td></tr>
+    </tbody>
+  </table>
+
+  <p>Contoh sederhana: pada sistem perpustakaan sekolah terdapat entitas Siswa dan entitas Buku yang saling berelasi melalui kata kerja "meminjam". Relasi ini nantinya dapat digambarkan sebagai:</p>
+  <pre><code>[ SISWA ] ---- meminjam ---- [ BUKU ]
+- nis (PK)                   - kode_buku (PK)
+- nama                       - judul
+- kelas                      - pengarang</code></pre>
+
+  <h2 class="sub">6. Normalisasi Data (Pengantar)</h2>
+  <p>Normalisasi adalah proses menata struktur tabel agar data tidak mengalami duplikasi berlebihan dan tetap konsisten. Sebagai pengantar, perhatikan prinsip dasar berikut: setiap tabel sebaiknya hanya membahas satu topik data, dan data yang berulang (misalnya nama kelas yang muncul berkali-kali pada tabel siswa) sebaiknya dipisahkan menjadi tabel tersendiri lalu dihubungkan menggunakan foreign key. Prinsip inilah yang mendasari mengapa tabel Siswa dan tabel Kelas pada basis data sekolah biasanya dipisah, bukan digabung dalam satu tabel besar.</p>
+
+  <h2 class="sub">7. Basis Data sebagai Fondasi Kecerdasan Artifisial</h2>
+  <p>Model AI, khususnya machine learning, "belajar" dari data historis yang jumlahnya sangat besar (big data). Sebelum data tersebut dapat digunakan untuk melatih model AI, data itu harus dikumpulkan, dibersihkan (data cleaning), dan disimpan secara terstruktur di dalam basis data. Contohnya, aplikasi rekomendasi film menyimpan riwayat tontonan jutaan pengguna dalam basis data, kemudian data tersebut diolah oleh model AI untuk memprediksi film apa yang mungkin disukai seorang pengguna berikutnya. Oleh karena itu, keterampilan mengelola basis data adalah langkah awal yang tidak terpisahkan dari pengembangan sistem AI.</p>
+
+  <div class="box activity">
+    <h4>Aktivitas Mandiri</h4>
+    <p>Amati sebuah aplikasi yang sering kamu gunakan (misalnya aplikasi belanja daring, media sosial, atau e-learning sekolah). Identifikasi minimal tiga entitas data yang mungkin disimpan aplikasi tersebut (contoh: Pengguna, Produk, Transaksi), lalu gambarkan ERD sederhana yang menghubungkan ketiganya.</p>
+  </div>
+
+  <div class="pager">
+    <a href="index.html">
+      <span class="dir">&larr; Kembali</span>
+      Daftar Materi Bab 2
+    </a>
+    <a class="next" href="b-perangkat-lunak-basis-data.html">
+      <span class="dir">Selanjutnya &rarr;</span>
+      B. Perangkat Lunak Basis Data
+    </a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>Yayasan Lembah Manah Langon Jepara &middot; Rintisan MA Lembah Manah</p>
+  <p class="small">Bab 2 &middot; Koding dan Kecerdasan Artifisial &middot; Kelas 10</p>
+</footer>
+
+</body>
+</html>

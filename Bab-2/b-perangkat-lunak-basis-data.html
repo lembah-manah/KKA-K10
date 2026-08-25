@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B. Perangkat Lunak Basis Data — Bab 2</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="crumbs" aria-label="Navigasi">
+  <a href="../index.html">Beranda</a>
+  <span class="sep">/</span>
+  <a href="index.html">Bab 2</a>
+  <span class="sep">/</span>
+  <span class="current">Bagian B</span>
+</nav>
+
+<header class="section-head">
+  <div class="section-head-inner">
+    <p class="section-eyebrow">Bab 2 &middot; Bagian B</p>
+    <h1 class="section-title">Perangkat Lunak Basis Data</h1>
+  </div>
+</header>
+
+<main>
+
+  <div class="summary-box">
+    <p class="label">Ringkasan Bagian</p>
+    <p class="text">Bagian ini mengenalkan DBMS (Database Management System) beserta beberapa contohnya, bahasa SQL dan lima perintah dasarnya (CREATE, INSERT, SELECT, UPDATE, DELETE), cara menggabungkan data antartabel dengan JOIN, serta cara mengelola basis data SQLite menggunakan Python melalui pustaka sqlite3. Ditutup dengan penjelasan alur data dari basis data menjadi dataset yang siap melatih model AI.</p>
+  </div>
+
+  <h2 class="sub">1. Mengenal DBMS (Database Management System)</h2>
+  <p>DBMS adalah perangkat lunak yang menjembatani pengguna dengan basis data, memungkinkan proses pembuatan, pembacaan, pengubahan, dan penghapusan data dilakukan dengan aman dan efisien. Berikut beberapa DBMS yang umum digunakan:</p>
+
+  <table>
+    <thead><tr><th>DBMS</th><th>Karakteristik</th><th>Contoh Penggunaan</th></tr></thead>
+    <tbody>
+      <tr><td>SQLite</td><td>Ringan, tidak memerlukan server terpisah, tersimpan dalam satu berkas.</td><td>Aplikasi skala kecil, aplikasi mobile, latihan pemrograman pemula.</td></tr>
+      <tr><td>MySQL / MariaDB</td><td>Open source, populer untuk aplikasi web, mendukung banyak pengguna sekaligus.</td><td>Sistem informasi sekolah, toko daring skala menengah.</td></tr>
+      <tr><td>PostgreSQL</td><td>Open source, mendukung fitur lanjutan dan tipe data kompleks, sering dipakai untuk aplikasi berbasis data besar termasuk AI.</td><td>Aplikasi analitik data dan machine learning.</td></tr>
+      <tr><td>Microsoft Access</td><td>Antarmuka grafis mudah digunakan, cocok untuk pemula dan skala kecil.</td><td>Basis data kantor atau organisasi kecil.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub">2. Mengenal Bahasa SQL</h2>
+  <p>SQL (Structured Query Language) adalah bahasa standar yang digunakan untuk berkomunikasi dengan basis data relasional. Dengan SQL, pengguna dapat membuat tabel, memasukkan data, mengambil data, memperbarui data, dan menghapus data. Empat operasi dasar ini sering disingkat CRUD (Create, Read, Update, Delete).</p>
+
+  <h3 class="sub-sub">a. Membuat Tabel (CREATE TABLE)</h3>
+  <pre><code>CREATE TABLE siswa (
+    nis VARCHAR(10) PRIMARY KEY,
+    nama VARCHAR(50),
+    kelas VARCHAR(10),
+    nilai_kka INT
+);</code></pre>
+
+  <h3 class="sub-sub">b. Menambahkan Data (INSERT INTO)</h3>
+  <pre><code>INSERT INTO siswa (nis, nama, kelas, nilai_kka)
+VALUES ('2026001', 'Ahmad Fauzan', 'X-1', 88);</code></pre>
+
+  <h3 class="sub-sub">c. Mengambil Data (SELECT)</h3>
+  <pre><code>-- Menampilkan seluruh data siswa
+SELECT * FROM siswa;
+
+-- Menampilkan siswa dengan nilai KKA di atas 85
+SELECT nama, nilai_kka FROM siswa WHERE nilai_kka > 85;
+
+-- Mengurutkan data berdasarkan nilai tertinggi
+SELECT nama, nilai_kka FROM siswa ORDER BY nilai_kka DESC;</code></pre>
+
+  <h3 class="sub-sub">d. Memperbarui Data (UPDATE)</h3>
+  <pre><code>UPDATE siswa
+SET nilai_kka = 95
+WHERE nis = '2026001';</code></pre>
+
+  <h3 class="sub-sub">e. Menghapus Data (DELETE)</h3>
+  <pre><code>DELETE FROM siswa
+WHERE nis = '2026003';</code></pre>
+
+  <div class="box info">
+    <h4>Peringatan Penting</h4>
+    <p>Perintah UPDATE dan DELETE tanpa klausa WHERE akan memengaruhi SELURUH baris pada tabel! Selalu periksa kembali klausa WHERE sebelum menjalankan kedua perintah tersebut agar tidak kehilangan data secara tidak sengaja.</p>
+  </div>
+
+  <h2 class="sub">3. Menghubungkan Antartabel (JOIN Sederhana)</h2>
+  <p>Kekuatan basis data relasional terletak pada kemampuannya menggabungkan data dari beberapa tabel sekaligus menggunakan perintah JOIN. Misalnya, untuk menampilkan nama siswa beserta nama kelasnya dari dua tabel terpisah (siswa dan kelas):</p>
+  <pre><code>SELECT siswa.nama, kelas.nama_kelas
+FROM siswa
+JOIN kelas ON siswa.kode_kelas = kelas.kode_kelas;</code></pre>
+
+  <h2 class="sub">4. Mengelola Basis Data dengan Python</h2>
+  <p>Python — bahasa pemrograman yang telah dipelajari pada Bab 1 — dapat digunakan untuk mengakses dan mengelola basis data SQLite melalui pustaka bawaan sqlite3, tanpa perlu instalasi tambahan. Kemampuan ini sangat berguna karena banyak proyek AI ditulis dengan Python, termasuk tahap pengambilan data dari basis data sebelum data tersebut diproses oleh model AI.</p>
+  <pre><code>import sqlite3
+
+# Membuat koneksi ke basis data (otomatis dibuat jika belum ada)
+koneksi = sqlite3.connect('sekolah.db')
+cursor = koneksi.cursor()
+
+# Membuat tabel
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS siswa (
+    nis TEXT PRIMARY KEY,
+    nama TEXT,
+    nilai_kka INTEGER
+)
+''')
+
+# Menambahkan data
+cursor.execute("INSERT INTO siswa VALUES ('2026004', 'Nadia Putri', 90)")
+koneksi.commit()
+
+# Mengambil dan menampilkan data
+cursor.execute('SELECT * FROM siswa')
+for baris in cursor.fetchall():
+    print(baris)
+
+koneksi.close()</code></pre>
+
+  <h2 class="sub">5. Dari Basis Data Menuju Dataset AI</h2>
+  <p>Dalam proyek Kecerdasan Artifisial, data yang telah rapi tersimpan dalam basis data sering diekspor menjadi dataset (misalnya dalam format CSV) untuk kemudian diolah oleh pustaka pemrosesan data seperti pandas sebelum digunakan melatih model AI. Alur singkatnya dapat digambarkan sebagai berikut:</p>
+  <pre><code>Data mentah -> Basis Data (disimpan & dikelola dengan SQL)
+            -> Dataset (diekspor, mis. file .csv)
+            -> Data Cleaning (membersihkan data kosong/tidak valid)
+            -> Model AI (proses pelatihan/training)
+            -> Prediksi / Keputusan AI</code></pre>
+
+  <div class="callout">
+    <h4>Garbage In, Garbage Out</h4>
+    <p>Tahap paling awal dari alur di atas — merancang dan mengelola basis data dengan benar — yang menentukan seberapa baik kualitas data yang akan diterima oleh model AI. Apabila data yang dimasukkan buruk (tidak rapi, banyak kesalahan), maka hasil AI yang dilatih dari data tersebut juga akan buruk.</p>
+  </div>
+
+  <div class="box activity">
+    <h4>Aktivitas Praktik</h4>
+    <p>Instal SQLite Browser (DB Browser for SQLite) atau gunakan situs online seperti sqliteonline.com. Buatlah sebuah tabel bernama "perpustakaan" dengan kolom kode_buku, judul, dan status_pinjam. Masukkan minimal 5 data buku, lalu coba jalankan perintah SELECT untuk menampilkan buku yang berstatus "tersedia" saja.</p>
+  </div>
+
+  <div class="pager">
+    <a href="a-konsep-basis-data.html">
+      <span class="dir">&larr; Sebelumnya</span>
+      A. Konsep Basis Data
+    </a>
+    <a class="next" href="penilaian-bab.html">
+      <span class="dir">Selanjutnya &rarr;</span>
+      Penilaian Bab 2
+    </a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>Yayasan Lembah Manah Langon Jepara &middot; Rintisan MA Lembah Manah</p>
+  <p class="small">Bab 2 &middot; Koding dan Kecerdasan Artifisial &middot; Kelas 10</p>
+</footer>
+
+</body>
+</html>

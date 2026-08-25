@@ -1,18 +1,97 @@
 <!DOCTYPE html>
-<html lang="jv">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bab-X</title>
-<style>
-  body{font-family:'Karla',sans-serif;background:#F3E7D0;color:#2A1D12;padding:60px 24px;text-align:center;}
-  a{color:#25415A;font-weight:700;}
-  h1{font-family:'Rasa',serif;color:#6B3F23;}
-</style>
+<title>Bab 2 — Basis Data dan Pengelolaannya</title>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <h1>Bab-X</h1>
-  <p>Materi belum diunggah.</p>
-  <p><a href="../index.html">&larr; Kembali ke Daftar Isi</a></p>
+
+<nav class="crumbs" aria-label="Navigasi">
+  <a href="../index.html">Beranda</a>
+  <span class="sep">/</span>
+  <span class="current">Bab-2</span>
+</nav>
+
+<header class="chapter-head">
+  <div class="chapter-head-inner">
+    <span class="eyebrow">Bab 2 &middot; hal. 61&ndash;102</span>
+    <h1 class="chapter-title">Basis Data dan Pengelolaannya</h1>
+    <p class="chapter-tagline">Modul ini disusun agar peserta didik memahami konsep dasar basis data, mampu mengelola data menggunakan perangkat lunak basis data dan bahasa SQL, serta menyadari peran penting data sebagai "bahan bakar" bagi sistem Kecerdasan Artifisial.</p>
+  </div>
+</header>
+
+<main>
+
+  <div class="goals-box">
+    <h3>Tujuan Pembelajaran Bab 2</h3>
+    <p style="font-size:14px; color:var(--ink-soft); margin-top:-4px;">Setelah mempelajari Bab 2 ini, peserta didik diharapkan mampu:</p>
+    <ul>
+      <li>Menjelaskan konsep data, informasi, dan basis data, serta menjelaskan pentingnya pengelolaan data yang terstruktur.</li>
+      <li>Mengidentifikasi komponen sistem basis data dan menggambarkan model data relasional (tabel, field, record, primary key, foreign key).</li>
+      <li>Merancang skema basis data sederhana menggunakan Entity Relationship Diagram (ERD).</li>
+      <li>Mengenal dan membandingkan berbagai perangkat lunak pengelola basis data (DBMS).</li>
+      <li>Menulis perintah dasar SQL (CREATE, INSERT, SELECT, UPDATE, DELETE) untuk mengelola data pada basis data sederhana.</li>
+      <li>Mengaitkan konsep basis data dengan proses pengumpulan dan pengolahan data (dataset) dalam pengembangan sistem Kecerdasan Artifisial.</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <h4>Mengapa Bab Ini Penting?</h4>
+    <p>Setiap sistem AI — mulai dari rekomendasi belanja daring, pengenalan wajah, hingga chatbot pintar — dilatih menggunakan data dalam jumlah besar yang tersimpan rapi di dalam basis data. Tanpa data yang terkelola dengan baik, AI tidak dapat belajar apa pun. Memahami cara menyimpan, mengatur, dan mengambil data secara efisien adalah keterampilan dasar sebelum melangkah ke dunia Kecerdasan Artifisial.</p>
+  </div>
+
+  <h3 style="font-family:'Fraunces',serif; font-size:17px; color:var(--emerald-deep); margin:0 0 14px;">Materi Bab 2</h3>
+  <ul class="section-nav-list">
+    <li>
+      <a href="a-konsep-basis-data.html">
+        <span class="letter-badge">A</span>
+        <span class="txt">
+          <h4>Konsep Basis Data</h4>
+          <p>model relasional &middot; ERD &middot; normalisasi</p>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a href="b-perangkat-lunak-basis-data.html">
+        <span class="letter-badge">B</span>
+        <span class="txt">
+          <h4>Perangkat Lunak Basis Data</h4>
+          <p>DBMS &middot; SQL &middot; Python sqlite3</p>
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="goals-box">
+    <h3>Rangkuman Bab 2</h3>
+    <ul>
+      <li>Basis data adalah kumpulan data yang terorganisasi secara sistematis, digunakan untuk mengatasi masalah redundansi, inkonsistensi, dan sulitnya akses bersama yang terjadi pada penyimpanan data manual.</li>
+      <li>Model data relasional menyusun data dalam bentuk tabel yang terdiri dari field (kolom) dan record (baris), dengan primary key sebagai identitas unik dan foreign key sebagai penghubung antartabel.</li>
+      <li>ERD (Entity Relationship Diagram) digunakan untuk merancang struktur basis data melalui entitas, atribut, dan relasi sebelum basis data benar-benar dibuat.</li>
+      <li>DBMS seperti SQLite, MySQL, dan PostgreSQL adalah perangkat lunak yang digunakan untuk mengelola basis data, dengan SQL sebagai bahasa standar untuk operasi CRUD (Create, Read, Update, Delete).</li>
+      <li>Python dapat digunakan untuk mengakses dan mengelola basis data melalui pustaka sqlite3, menjembatani keterampilan pemrograman pada Bab 1 dengan pengelolaan data pada Bab 2.</li>
+      <li>Basis data yang terkelola dengan baik merupakan fondasi penting bagi dataset yang digunakan untuk melatih model Kecerdasan Artifisial — kualitas data menentukan kualitas hasil AI.</li>
+    </ul>
+  </div>
+
+  <a href="penilaian-bab.html" style="text-decoration:none;">
+    <div class="box info" style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+      <div>
+        <h4 style="margin-bottom:2px;">Penilaian Bab 2</h4>
+        <p style="color:var(--ink-soft);">Pilihan ganda, esai/uraian, dan proyek mini.</p>
+      </div>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--emerald-deep);">Buka &rarr;</span>
+    </div>
+  </a>
+
+</main>
+
+<footer class="site-footer">
+  <p>Yayasan Lembah Manah Langon Jepara &middot; Rintisan MA Lembah Manah</p>
+  <p class="small"><a href="../index.html" style="color:inherit;">&larr; Kembali ke Beranda</a></p>
+</footer>
+
 </body>
 </html>
